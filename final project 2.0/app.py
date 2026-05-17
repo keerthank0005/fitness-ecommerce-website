@@ -4,8 +4,6 @@ import smtplib
 import sqlite3
 
 from flask import Flask, render_template, request, redirect, session, jsonify, url_for, flash
-import pymysql
-pymysql.install_as_MySQLdb()
 from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -23,17 +21,14 @@ from reportlab.lib import colors
 app = Flask(__name__)
 app.secret_key = "fitai_secret_123"
 
-
 # ================= DATABASE CONFIG =================
 
-app.config['MYSQL_HOST'] = os.environ.get("MYSQLHOST")
-app.config['MYSQL_USER'] = os.environ.get("MYSQLUSER")
-app.config['MYSQL_PASSWORD'] = os.environ.get("MYSQLPASSWORD")
-app.config['MYSQL_DB'] = os.environ.get("MYSQLDATABASE")
-app.config['MYSQL_PORT'] = int(os.environ.get("MYSQLPORT", 3306))
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'Keerthan05!'
+app.config['MYSQL_DB'] = 'final_project_db'
 
 mysql = MySQL(app)
-
 
 # ================= RAZORPAY CONFIG =================
 
@@ -959,5 +954,17 @@ def submit_feedback():
     # save into database
     pass
 
+@app.route('/admin_dashboard')
+def admin():
+    conn = sqlite3.connect('feedback.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM feedback")
+    data = cursor.fetchall()
+    conn.close()
+
+    return render_template('admin_dashboard.html', feedback=data)
 
 # ================= RUN =================
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)

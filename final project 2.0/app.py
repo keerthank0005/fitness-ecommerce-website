@@ -25,11 +25,11 @@ app.secret_key = "fitai_secret_123"
 
 # ================= DATABASE CONFIG =================
 
-app.config['MYSQL_HOST'] = os.environ.get("MYSQLHOST")
-app.config['MYSQL_USER'] = os.environ.get("MYSQLUSER")
-app.config['MYSQL_PASSWORD'] = os.environ.get("MYSQLPASSWORD")
-app.config['MYSQL_DB'] = os.environ.get("MYSQLDATABASE")
-app.config['MYSQL_PORT'] = int(os.environ.get("MYSQLPORT"))
+app.config['MYSQL_HOST'] = os.environ.get("mysql.railway.internal")
+app.config['MYSQL_USER'] = os.environ.get("root")
+app.config['MYSQL_PASSWORD'] = os.environ.get("MWlOUWeyZeKChEuqvWgMtwEFWvhwuoIF")
+app.config['MYSQL_DB'] = os.environ.get("railway")
+app.config['MYSQL_PORT'] = int(os.environ.get("3306"))
 
 mysql = MySQL(app) 
 

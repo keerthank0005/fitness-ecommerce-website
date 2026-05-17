@@ -35,15 +35,15 @@ mysql = MySQL(app)
 
 # ================= RAZORPAY CONFIG =================
 
-RAZORPAY_KEY_ID = "rzp_test_SeyoxAKE4PxyuQ"
-RAZORPAY_SECRET = "gA2YEfTj8gyrf18N6fDKIh8h"
+RAZORPAY_KEY_ID = os.environ.get("RAZORPAY_KEY_ID")
+RAZORPAY_SECRET = os.environ.get("RAZORPAY_SECRET")
 
 razorpay_client = razorpay.Client(auth=(RAZORPAY_KEY_ID, RAZORPAY_SECRET))
 
 # ================= EMAIL CONFIG =================
 
-SENDER_EMAIL = "keerthan0505@gmail.com"
-SENDER_PASSWORD = "ixqrluqlzouewthj"
+SENDER_EMAIL = os.environ.get("SENDER_EMAIL")
+SENDER_PASSWORD = os.environ.get("SENDER_PASSWORD")
 
 # ================= SINGLE ADMIN CONFIG =================
 # Only this email can open admin dashboard from same /login page

@@ -23,7 +23,6 @@ from reportlab.lib import colors
 app = Flask(__name__)
 app.secret_key = "fitai_secret_123"
 
-# ================= DATABASE CONFIG =================
 
 # ================= DATABASE CONFIG =================
 
@@ -35,7 +34,6 @@ app.config['MYSQL_PORT'] = int(os.environ.get("MYSQLPORT", 3306))
 
 mysql = MySQL(app)
 
-mysql = MySQL(app) 
 
 # ================= RAZORPAY CONFIG =================
 

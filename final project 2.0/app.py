@@ -2,6 +2,7 @@ import os
 import datetime
 import smtplib
 import sqlite3
+import mysql.connector # type: ignore
 
 from flask import Flask, render_template, request, redirect, session, jsonify, url_for, flash
 from flask_mysqldb import MySQL
@@ -23,11 +24,13 @@ app.secret_key = "fitai_secret_123"
 
 # ================= DATABASE CONFIG =================
 
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Keerthan05!'
-app.config['MYSQL_DB'] = 'final_project_db'
-
+conn = mysql.connector.connect(
+        host=os.environ.get("MYSQLHOST"),
+        user=os.environ.get("MYSQLUSER"),
+        password=os.environ.get("MYSQLPASSWORD"),
+        database=os.environ.get("MYSQLDATABASE"),
+        port=os.environ.get("MYSQLPORT")
+        )
 mysql = MySQL(app)
 
 # ================= RAZORPAY CONFIG =================

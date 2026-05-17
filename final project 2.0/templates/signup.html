@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="auth-container" style="width:400px;">
+
+<h2>Create Your AI Profile 🤖</h2>
+
+<p>Sign up to access your fitness profile,sports training and FitAI Assistant 💪</p>
+
+<form method="POST" action="/signup">
+
+<input type="text"
+name="name"
+placeholder="Full Name"
+required>
+
+<input type="email"
+name="email"
+placeholder="Email Address"
+required>
+
+<input type="password"
+name="password"
+placeholder="Create Password"
+required>
+
+<input type="number"
+name="age"
+placeholder="Age"
+min="1" 
+max="120" 
+required>
+
+<input type="number" 
+id="weight" 
+name="weight"
+placeholder="Enter your Weight in kg"
+min="20"
+max="400" 
+step="0.1" 
+required>
+
+ <input type="number" 
+ id="height" 
+ name="height"
+placeholder="Enter your height in cm"
+min="50" 
+max="250" 
+step="0.1" 
+required>
+
+<select name="goal" required>
+
+<option value="">
+Select Fitness Goal
+</option>
+
+<option>Muscle Gain</option>
+
+<option>Weight Loss</option>
+
+<option>General Fitness</option>
+
+<option>Yoga & Flexibility</option>
+
+</select>
+
+<select name="sport" required>
+
+<option value="">
+Select Sport Interest
+</option>
+
+<option>Cricket</option>
+
+<option>Football</option>
+
+<option>Gym Training</option>
+
+<option>Home Workout</option>
+
+<option>None</option>
+
+</select>
+
+<button type="submit">
+Sign Up
+</button>
+
+</form>
+
+<p style="margin-top: 15px;">
+
+Already have an account?
+
+<a href="/login">
+Login
+</a>
+
+</p>
+
+</div>
+
+{% endblock %}

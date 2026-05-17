@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section style="text-align:center; padding:40px;">
+
+<h2>FitAI Assistant 🤖</h2>
+
+<form method="POST">
+
+<input type="text"
+name="question"
+placeholder="Ask FitAI..."
+style="padding:10px; width:300px;">
+
+<br><br>
+
+<button class="hero-btn">
+Ask
+</button>
+
+</form>
+
+<br><br>
+
+<div style="
+background: #0400188f;
+padding: 50px;
+width:600px;
+margin:auto;
+border-radius:100px;
+">
+{{ answer }}
+</div>
+
+<div style="background:#0400188f; padding:50px; width:600px; margin:auto; border-radius:40px; color:white;">
+
+{% if answer %}
+<br><br>
+<p style="font-size:18px;">
+If you want the equipment needed to reach your goal, we have it for you.
+</p>
+
+<a href="{{ url_for('home') }}">
+<button style="
+padding:15px 30px;
+background:#d4af37;
+color:rgb(8, 8, 8);
+border:none;
+border-radius:30px;
+font-size:18px;
+cursor:pointer;">
+reach your goal
+</button>
+</a>
+{% endif %}
+
+</div>
+
+</section>
+
+{% endblock %}

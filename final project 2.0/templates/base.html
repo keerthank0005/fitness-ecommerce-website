@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FitAI Store</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Razorpay Script -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+
+<body>
+<div id="cart-popup" class="cart-popup">
+    Item added to cart 🛒
+</div>
+
+<!-- ================= SIDE CART ================= -->
+
+<div id="cart-overlay" onclick="toggleCart()"></div>
+
+<!-- ================= SIDE CART ================= -->
+
+<div id="cart-overlay" onclick="toggleCart()"></div>
+
+<div id="side-cart">
+
+    <h2>🛒 Your Cart</h2>
+
+    <!-- CART ITEMS -->
+    <div id="cart-items"></div>
+
+
+    <!-- ✅ ADD THIS HERE -->
+    <div class="cart-footer">
+
+        <h3>Total: ₹<span id="cart-total">0</span></h3>
+
+        <button onclick="payNow()" class="checkout-btn">
+            Pay Now ⚡
+        </button>
+
+    </div>
+
+</div>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+<h1 class="logo">FitAI 💪</h1>
+
+<ul>
+
+<li><a href="/">Home🏠</a></li>
+
+<li><a href="/profile">Profile👤</a></li>
+
+<li><a href="/cart">Cart 🛒</a></li>
+
+<li><a href="/ai">FitAI Assistant 🤖</a></li>
+
+{% if session.get('user_id') %}
+
+<li><a href="/logout">Logout🔒</a></li>
+
+{% else %}
+
+<li><a href="/login">Login🔑</a></li>
+
+{% endif %}
+
+</ul>
+
+</nav>
+
+
+<!-- PAGE CONTENT -->
+
+{% block content %}
+{% endblock %}
+
+
+<!-- JS -->
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+<script>
+function showCartPopup() {
+    let popup = document.getElementById("cart-popup");
+
+    popup.classList.add("show");
+
+    setTimeout(() => {
+        popup.classList.remove("show");
+    }, 2000);
+}
+</script>
+<footer class="footer">
+
+  <div class="footer-container">
+
+    <div class="footer-column">
+      <h3>Get to Know Us</h3>
+      <ul>
+        <li><a href="/about.html">About Us</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h3>Connect with Us</h3>
+      <ul>
+        <li><a href="https://www.instagram.com/">Instagram</a></li>
+        <li><a href="https://twitter.com/">Twitter</a></li>
+        <li><a href="https://www.facebook.com/">Facebook</a></li>
+        <li><a href="https://web.whatsapp.com/">WhatsApp</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h3>Make Money with Us</h3>
+      <ul>
+        <li><a href="sell_on_fitai.html">Sell on FitAI</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h3>Let Us Help You</h3>
+      <ul>
+        <li><a href="/profile">Your Account</a></li>
+        <li><a href="/help.html">Help-center/feedback-form</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 FitAI Store. All rights reserved.</p>
+    <p class="credits">Designed and Developed by</p>
+    <p class="credits">B Sai Bhaswanth, C Baradwaj, K Keerthan</p>
+  </div>
+
+</footer>
+</body>
+
+</html>

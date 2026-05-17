@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="orders-section">
+
+<h2>📦 Track Your Orders</h2>
+
+{% for order in orders %}
+
+<div class="order-card">
+
+    <h3>{{ order[0] }}</h3>
+    <p>₹{{ order[1] }}</p>
+
+    <!-- Progress Tracker -->
+    <div class="tracker">
+
+        <!-- Step 1 -->
+        <div class="circle {% if order[2] in ['Ordered','Shipped','Delivered'] %}active{% endif %}">
+            ✔
+        </div>
+
+        <!-- Line -->
+        <div class="line {% if order[2] in ['Shipped','Delivered'] %}active{% endif %}"></div>
+
+        <!-- Step 2 -->
+        <div class="circle {% if order[2] in ['Shipped','Delivered'] %}active{% endif %}">
+            🚚
+        </div>
+
+        <!-- Line -->
+        <div class="line {% if order[2] == 'Delivered' %}active{% endif %}"></div>
+
+        <!-- Step 3 -->
+        <div class="circle {% if order[2] == 'Delivered' %}active{% endif %}">
+            📦
+        </div>
+
+    </div>
+
+    <!-- Labels -->
+    <div class="labels">
+        <span>Ordered</span>
+        <span>Shipped</span>
+        <span>Delivered</span>
+    </div>
+
+    <p class="status">Status: {{ order[2] }}</p>
+
+</div>
+
+{% endfor %}
+
+</section>
+
+{% endblock %}

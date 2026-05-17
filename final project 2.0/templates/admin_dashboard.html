@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - FitAI Store</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body{
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            min-height: 100vh;
+        }
+
+        .navbar{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:18px 30px;
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar h2{
+            font-size: 24px;
+        }
+
+        .nav-links{
+            display:flex;
+            gap:12px;
+            flex-wrap:wrap;
+        }
+
+        .nav-links a{
+            text-decoration:none;
+            color:white;
+            background:#010125;
+            padding:10px 16px;
+            border-radius:10px;
+            transition:0.3s;
+            font-size:14px;
+        }
+
+        .nav-links a:hover{
+            background:#010b27;
+            transform: translateY(-1px);
+        }
+
+        .container{
+            width:90%;
+            margin:30px auto;
+        }
+
+        .welcome-box{
+            background: rgba(255,255,255,0.07);
+            backdrop-filter: blur(12px);
+            border-radius:16px;
+            padding:20px;
+            margin-bottom:25px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        }
+
+        .welcome-box h3{
+            margin-bottom:8px;
+            color:#93c5fd;
+        }
+
+        .cards{
+            display:grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap:20px;
+            margin-bottom:30px;
+        }
+
+        .card{
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(12px);
+            border-radius:16px;
+            padding:22px;
+            text-align:center;
+            box-shadow:0 8px 24px rgba(0,0,0,0.18);
+            transition:0.3s;
+        }
+
+        .card:hover{
+            transform: translateY(-4px);
+        }
+
+        .card h3{
+            color:#93c5fd;
+            margin-bottom:12px;
+            font-size:18px;
+        }
+
+        .card p{
+            font-size:30px;
+            font-weight:bold;
+        }
+
+        .section-title{
+            margin:20px 0 15px;
+            font-size:22px;
+        }
+
+        .table-wrapper{
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(12px);
+            border-radius:16px;
+            overflow:hidden;
+            box-shadow:0 8px 24px rgba(0,0,0,0.2);
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        th{
+            background:#2563eb;
+            color:white;
+            padding:14px 10px;
+            font-size:14px;
+        }
+
+        td{
+            padding:14px 10px;
+            text-align:center;
+            border-bottom:1px solid rgba(255,255,255,0.08);
+            font-size:14px;
+        }
+
+        tr:hover{
+            background: rgba(255,255,255,0.05);
+        }
+
+        .status-badge{
+            padding:7px 12px;
+            border-radius:999px;
+            font-size:12px;
+            font-weight:bold;
+            display:inline-block;
+        }
+
+        .status-ordered{
+            background:#fef3c7;
+            color:#92400e;
+        }
+
+        .status-processing{
+            background:#dbeafe;
+            color:#1d4ed8;
+        }
+
+        .status-delivered{
+            background:#dcfce7;
+            color:#166534;
+        }
+
+        .status-cancelled{
+            background:#fee2e2;
+            color:#991b1b;
+        }
+
+        .action-buttons{
+            display:flex;
+            gap:8px;
+            justify-content:center;
+            flex-wrap:wrap;
+        }
+
+        .action-buttons a{
+            text-decoration:none;
+            padding:8px 10px;
+            border-radius:8px;
+            color:white;
+            font-size:12px;
+            font-weight:bold;
+            transition:0.3s;
+        }
+
+        .btn-process{
+            background:#2563eb;
+        }
+
+        .btn-deliver{
+            background:#16a34a;
+        }
+
+        .btn-cancel{
+            background:#dc2626;
+        }
+
+        .action-buttons a:hover{
+            opacity:0.9;
+            transform: translateY(-1px);
+        }
+
+        .empty-text{
+            padding:25px;
+            text-align:center;
+            color:#cbd5e1;
+        }
+
+        @media (max-width: 768px){
+            .navbar{
+                flex-direction:column;
+                gap:12px;
+                align-items:flex-start;
+            }
+
+            .container{
+                width:95%;
+            }
+
+            .table-wrapper{
+                overflow-x:auto;
+            }
+
+            table{
+                min-width:900px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <h2>👑 FitAI Admin Dashboard</h2>
+
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('admin_add_product') }}">+ Add Product</a>
+            <a href="{{ url_for('admin_logout') }}">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="welcome-box">
+            <h3>Welcome, Admin</h3>
+            <p>Manage your users, products, and orders from one place.</p>
+        </div>
+
+        <div class="cards">
+            <div class="card">
+                <h3>Total Users</h3>
+                <p>{{ total_users }}</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Products</h3>
+                <p>{{ total_products }}</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Orders</h3>
+                <p>{{ total_orders }}</p>
+            </div>
+        </div>
+
+        {% for row in feedback %}
+        <div class="feedback-card">
+            <p><b>Name:</b> {{ row[1] }}</p>
+            <p><b>Phone:</b> {{ row[2] }}</p>
+            <p><b>Email:</b> {{ row[3] }}</p>
+            <p><b>Message:</b> {{ row[4] }}</p>
+        </div>
+        {% endfor %}
+
+        <h2 class="section-title">📦 Manage Orders</h2>
+
+        <div class="table-wrapper">
+            {% if orders %}
+            <table>
+                <tr>
+                    <th>Order ID</th>
+                    <th>User ID</th>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+
+                {% for order in orders %}
+                <tr>
+                    <td>{{ order[0] }}</td>
+                    <td>{{ order[1] }}</td>
+                    <td>{{ order[2] }}</td>
+                    <td>₹{{ order[3] }}</td>
+
+                    <td>
+                        {% set status = order[4]|lower %}
+                        <span class="status-badge
+                            {% if status == 'ordered' %}status-ordered{% endif %}
+                            {% if status == 'processing' %}status-processing{% endif %}
+                            {% if status == 'delivered' %}status-delivered{% endif %}
+                            {% if status == 'cancelled' %}status-cancelled{% endif %}
+                        ">
+                            {{ order[4] }}
+                        </span>
+                    </td>
+
+                    <td>{{ order[5] }}</td>
+
+                    <td>
+                        <div class="action-buttons">
+                            <a class="btn-process" href="{{ url_for('update_order', order_id=order[0], status='Processing') }}">Processing</a>
+                            <a class="btn-deliver" href="{{ url_for('update_order', order_id=order[0], status='Delivered') }}">Delivered</a>
+                            <a class="btn-cancel" href="{{ url_for('update_order', order_id=order[0], status='Cancelled') }}">Cancel</a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% else %}
+            <div class="empty-text">No orders found yet.</div>
+            {% endif %}
+        </div>
+
+    </div>
+
+</body>
+</html>

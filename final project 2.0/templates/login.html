@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+.flash {
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.flash.success {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.flash.danger {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.flash.warning {
+    background: #fef3c7;
+    color: #92400e;
+}
+</style>
+
+<div class="auth-wrapper">
+    <div class="auth-container">
+
+        <h2>Welcome to FitAI 💪</h2>
+        <p>
+            Login to access your fitness profile,
+            sports training and FitAI Assistant 🤖
+        </p>
+
+        <!-- ✅ FIXED FLASH MESSAGES -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <p class="flash {{ category }}">
+                        {{ message }}
+                    </p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="{{ url_for('login') }}">
+            <input type="email" name="email" placeholder="Enter Email" required>
+
+            <!-- Password with toggle -->
+            <div style="position: relative;">
+                <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="Enter Password"
+                    required
+                    style="width:100%; padding-right:70px;"
+                >
+
+                <span
+                    id="togglePasswordText"
+                    onclick="togglePassword()"
+                    style="
+                        position:absolute;
+                        right:15px;
+                        top:50%;
+                        transform:translateY(-50%);
+                        cursor:pointer;
+                        font-size:14px;
+                        color:#2563eb;
+                        font-weight:bold;
+                    "
+                >
+                    Show
+                </span>
+            </div>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <p style="margin-top: 15px;">
+            Don't have an account?
+            <a href="{{ url_for('signup') }}">Sign Up</a>
+        </p>
+
+    </div>
+</div>
+
+<script>
+function togglePassword() {
+    const passwordInput = document.getElementById("password");
+    const toggleText = document.getElementById("togglePasswordText");
+
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        toggleText.textContent = "Hide";
+    } else {
+        passwordInput.type = "password";
+        toggleText.textContent = "Show";
+    }
+}
+</script>
+
+{% endblock %}

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sell on FitAI</title>
+
+<style>
+/* ===== BODY ===== */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #03030f, #0f0e05);
+    color: #e2e8f0;
+    text-align: center;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+/* ===== HEADINGS ===== */
+h1, h2 {
+    color: #79560c; /* neon blue */
+}
+
+p {
+    color: #cbd5f5;
+    line-height: 1.6;
+}
+
+/* ===== LIST ===== */
+ul {
+    text-align: left;
+    display: inline-block;
+    margin-top: 15px;
+}
+
+li {
+    margin: 8px 0;
+}
+
+/* ===== BUTTON CONTAINER ===== */
+.button-container {
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* ===== BUTTON STYLE ===== */
+button {
+    background: linear-gradient(135deg, #b99803, #887b05);
+    color: #020617;
+    border: none;
+    padding: 12px 28px;
+    font-size: 14px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+/* ===== HOVER EFFECT ===== */
+button:hover {
+    background: #facc15; /* yellow */
+    color: black;
+    transform: scale(1.05);
+}
+
+/* ===== CONTACT BOX ===== */
+.contact-box {
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(2, 21, 105, 0.288);
+    border: 1px solid rgba(3, 3, 90, 0.301);
+    border-radius: 10px;
+}
+
+/* ===== SUPPORT TEXT ===== */
+.support {
+    margin-top: 30px;
+    color: #94a3b8;
+}
+
+/* Home Button Style */
+   .home-btn {
+    position: fixed;   /* sticks to screen */
+    top: 15px;
+    left: 15px;
+
+    padding: 8px 16px;
+    border-radius: 8px;
+
+    background: linear-gradient(135deg, #02001f, #03011f);
+    color: #e0e2e7;
+
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+
+    z-index: 1000; /* stays above everything */
+    transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.home-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(56, 189, 248, 0.4);
+}
+
+/* Click Effect */
+.home-btn:active {
+    transform: scale(0.95);
+}
+
+/* Optional: Add glow animation */
+.home-btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.home-btn:hover::after {
+    opacity: 1;
+}
+</style>
+
+</head>
+
+<body>
+    <a href="/" class="home-btn">🏠 Home</a>
+
+    <div class="container">
+
+    <h1>Sell on FitAI</h1>
+    <p>Join FitAI and reach customers looking for fitness and sports equipment.</p>
+
+    <h2>Why Sell on FitAI?</h2>
+    <ul>
+        <li>Access to a large customer base interested in fitness products.</li>
+        <li>Easy-to-use seller dashboard for managing your products and orders.</li>
+        <li>Secure payment processing and timely payouts.</li>
+        <li>Marketing support to help you grow your business.</li>
+    </ul>
+
+    <h2>How to Get Started</h2>
+
+    <div class="contact-box">
+        <p><b>Contact via WhatsApp:</b> 7647709055</p>
+        <div class="button-container">
+            <button onclick="window.open('https://wa.me/917647709055')">
+                Get in Touch via WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <div class="contact-box">
+        <p><b>Contact via Email:</b> example@fitai.com</p>
+        <div class="button-container">
+            <button onclick="window.location.href='mailto:example@fitai.com'">
+                Get in Touch via Email
+            </button>
+        </div>
+    </div>
+
+    <div class="support">
+        <h2>Support</h2>
+         <p>
+            If you have any questions or need assistance, please contact our support team at 
+            <span class="email">support@fitai.com</span>.
+        </p>
+         <p>
+            We're here to help you succeed on FitAI!
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

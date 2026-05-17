@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="cart-section">
+
+<h2>🛒 Your Cart</h2>
+
+{% if cart %}
+
+<div class="cart-container">
+
+{% for item in cart %}
+
+<div class="cart-card">
+
+    <!-- INFO -->
+    <div class="cart-info">
+        <h3>{{ item.name }}</h3>
+        <p>₹{{ item.price }}</p>
+
+        <!-- QUANTITY -->
+        <div class="quantity-box">
+
+            <button onclick="changeQty('{{ item.name }}', -1)">−</button>
+
+            <span id="qty-{{ item.name }}">{{ item.quantity }}</span>
+
+            <button onclick="changeQty('{{ item.name }}', 1)">+</button>
+
+        </div>
+
+    </div>
+
+    <!-- REMOVE 
+    <button onclick="removeItem('{{ item.name }}')" class="remove-btn">
+        ❌
+    </button>-->
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<!-- TOTAL -->
+<div class="cart-total">
+
+<h2>Total: ₹<span id="total">{{ total }}</span></h2>
+
+<a href="/payment" class="checkout-btn">
+    Proceed to Payment 💳
+</a>
+
+</div>
+
+{% else %}
+
+<p class="empty-cart">Your cart is empty 🛒</p>
+
+{% endif %}
+
+</section>
+
+{% endblock %}

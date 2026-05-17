@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Payment</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Razorpay -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+
+<body>
+
+<section id="payment-section">
+
+    <div class="payment-card">
+
+        <h2>Complete Your Payment 💳</h2>
+
+        <h3>Total: ₹{{ total }}</h3>
+
+        <br>
+
+        <button id="pay-btn" class="pay-btn">
+            Pay Now
+        </button>
+
+        <!-- ✅ Added Razorpay Note -->
+        <div style="
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(37, 99, 235, 0.08);
+            border-radius: 10px;
+            font-size: 14px;
+            color: #334155;
+            line-height: 1.5;
+            text-align: center;
+        ">
+            <strong>Note:</strong><p>Razorpay payment mode is a test payment mode.</p>
+            <P>Use wallet or net banking payment for quick testing.</P>
+            <P>u can choose if your payment should be successful or failed.</P>
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+
+var options = {
+    "key": "{{ razorpay_key }}",
+    "amount": "{{ total * 100 }}",
+    "currency": "INR",
+    "name": "Fitness AI",
+    "description": "Order Payment",
+    "order_id": "{{ order_id }}",
+    "config_id": "config_SezBHwq9lOtfsF",
+    "handler": function (response){
+
+        fetch("/payment_success", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_signature: response.razorpay_signature
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            window.location.href = "/success";
+        });
+
+    }
+};
+
+var rzp = new Razorpay(options);
+
+document.getElementById('pay-btn').onclick = function(e){
+    rzp.open();
+    e.preventDefault();
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="profile-section">
+
+    <h2>Your Fitness Profile 🧠</h2>
+
+    <div class="profile-card">
+
+        <!-- LEFT SIDE -->
+        <div>
+            <h3>{{ user.name }}</h3>
+            <p>Email: {{ user.email }}</p>
+            <p>Age: {{ user.age }}</p>
+            <p>Weight: {{ user.weight }} kg</p>
+            <p>Height: {{ user.height }} cm</p>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div>
+            <h3>BMI Score</h3>
+
+            <div class="bmi-circle">
+                {{ bmi }}
+            </div>
+
+            <p>Goal: {{ user.goal }}</p>
+            <p>Sport Interest: {{ user.sport }}</p>
+        </div>
+
+    </div>
+    
+    <div class="profile-options">
+      <a href="/my_orders" class="hero-btn">My Orders 📦</a>
+    </div>
+
+</section>
+
+{% endblock %}

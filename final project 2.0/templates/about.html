@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FitAI Store</title>
+
+<style>
+
+/* ===== BODY ===== */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #110800, #020013);
+    color: #e2e8f0;
+}
+
+/* ===== MAIN SECTION ===== */
+.about {
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+/* ===== HEADINGS ===== */
+h1 { color: #bd5f08; }
+h2 { color: #f8f7f5; }
+h3 { color: #ad760e; }
+h4 { color: #94a3b8; }
+
+/* ===== IMAGE ===== */
+.about img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 15px;
+    margin: 20px 0;
+    box-shadow: 0 0 20px rgba(34, 207, 255, 0.2);
+}
+
+/* ===== LOCATION ===== */
+.location {
+    background: rgba(34, 207, 255, 0.08);
+    border: 1px solid rgba(34, 207, 255, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+/* ===== FOUNDERS GRID ===== */
+.founders {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ===== CARD ===== */
+.founder-card {
+    background: #0f172a;
+    border-radius: 15px;
+    padding: 20px;
+    width: 280px;
+    text-align: left;
+    border: 1px solid #1e293b;
+    transition: 0.3s;
+}
+
+.founder-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 20px rgba(34, 207, 255, 0.3);
+}
+
+.founder-card p {
+    font-size: 14px;
+    color: #cbd5f5;
+}
+
+/* ===== CONTACT SECTION (SIDE BY SIDE) ===== */
+.contact-section {
+    margin-top: 40px;
+
+    display: flex;
+    flex-direction: row;        /* 🔥 SIDE BY SIDE */
+    justify-content: center;    /* center horizontally */
+    align-items: center;
+    gap: 20px;                  /* space between boxes */
+    flex-wrap: wrap;            /* responsive (goes down on small screens) */
+}
+
+/* Contact Box */
+.contact-box {
+    width: 300px;
+    padding: 20px;
+    background: rgba(34, 207, 255, 0.08);
+    border-radius: 10px;
+    border: 1px solid rgba(34, 207, 255, 0.2);
+    text-align: center;
+    transition: 0.3s;
+}
+
+/* Hover */
+.contact-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(34, 207, 255, 0.3);
+}
+
+/* Buttons */
+.button-container {
+    margin-top: 10px;
+}
+
+button {
+    background: linear-gradient(135deg, #bd5f08, #b65a10);
+    color: #020617;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #facc15;
+    color: black;
+    transform: scale(1.05);
+}
+
+/* ===== ABOUT SECTIONS ===== */
+.about-section {
+    margin-top: 40px;
+    padding: 20px;
+    background: rgba(198, 207, 209, 0.05);
+    border-radius: 10px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .founders {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Home Button Style */
+.home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 8px 16px;
+    border-radius: 8px;
+
+    background: linear-gradient(135deg, #271701, #201301);
+    color: #dde2ec;
+
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+
+    transition: all 0.3s ease;
+}
+
+/* Hover Effect */
+.home-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 15px rgba(184, 209, 219, 0.4);
+}
+
+/* Click Effect */
+.home-btn:active {
+    transform: scale(0.95);
+}
+
+/* Optional: Add glow animation */
+.home-btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.home-btn:hover::after {
+    opacity: 1;
+}
+
+</style>
+
+</head>
+
+<body>
+    <a href="/" class="home-btn">🏠 Home</a>
+
+<section class="about">
+
+    <h1>FitAI Store</h1>
+    <h2>Our Main Branch</h2>
+
+    <img src="{{ url_for('static', filename='images/building.jpg') }}" alt="FitAI Store">
+
+    <div class="location">
+        <h3>Location</h3>
+        <p>FitAI Technologies Pvt. Ltd.4th Floor, Orion Tech Park ITPL Main Road, Whitefield Near Prestige Shantiniketan Bengaluru – 560048 Karnataka, India</p>
+    </div>
+
+    <!-- ✅ CONTACT SECTION -->
+    <div class="contact-section">
+
+        <div class="contact-box">
+            <p><b>Contact via WhatsApp:</b> 7647709055</p>
+            <div class="button-container">
+                <button onclick="window.open('https://wa.me/917647709055')">
+                    WhatsApp Us
+                </button>
+            </div>
+        </div>
+
+        <div class="contact-box">
+            <p><b>Contact via Email:</b> example@fitai.com</p>
+            <div class="button-container">
+                <button onclick="window.location.href='mailto:example@fitai.com'">
+                    Email Us
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <h1>About Us</h1>
+    <h2>Founders / Co-Owners</h2>
+
+    <div class="founders">
+
+        <div class="founder-card">
+            <h3>B Sai Bhaswanth</h3>
+            <h4>Founder</h4>
+            <p>Visionary behind FitAI Store with passion for fitness & tech.</p>
+            <p><strong>Email:</strong> info@fitaistore.com</p>
+            <p><strong>Phone:</strong> +91 98765 43210</p>
+        </div>
+
+        <div class="founder-card">
+            <h3>C Baradwaj</h3>
+            <h4>Chairman</h4>
+            <p>Drives growth and innovation of the platform.</p>
+            <p><strong>Email:</strong> info@fitaistore.com</p>
+            <p><strong>Phone:</strong> +91 95893 84373</p>
+        </div>
+
+        <div class="founder-card">
+            <h3>K Keerthan</h3>
+            <h4>CEO</h4>
+            <p>Focused on customer experience and excellence.</p>
+            <p><strong>Email:</strong> info@fitaistore.com</p>
+            <p><strong>Phone:</strong> +91 98765 43210</p>
+        </div>
+
+    </div>
+
+    <div class="about-section">
+        <h1>Our Story</h1>
+        <p>FitAI Store is an AI-powered fitness and sports equipment platform designed to help users achieve their fitness goals efficiently. We provide smart product recommendations based on user preferences and activity levels, making fitness shopping easy and personalized.</p>
+    </div>
+
+    <div class="about-section">
+        <h1>Our Mission</h1>
+        <p>Our mission is to revolutionize fitness through AI-powered personalization. We aim to deliver high-quality products, excellent service, and a seamless shopping experience for all users.</p>
+    </div>
+
+</section>
+
+</body>
+</html>

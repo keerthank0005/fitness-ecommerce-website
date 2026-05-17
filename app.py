@@ -1,8 +1,7 @@
 import os
 import datetime
 import smtplib
-import sqlite3
-import mysql.connector # type: ignore
+import mysql.connector 
 
 from flask import Flask, render_template, request, redirect, session, jsonify, url_for, flash
 from flask_mysqldb import MySQL

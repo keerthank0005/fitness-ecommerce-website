@@ -961,14 +961,5 @@ def submit_feedback():
     # save into database
     pass
 
-@app.route('/admin_dashboard')
-def admin():
-    conn = sqlite3.connect('feedback.db')
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM feedback")
-    data = cursor.fetchall()
-    conn.close()
-
-    return render_template('admin_dashboard.html', feedback=data)
 
 # ================= RUN =================

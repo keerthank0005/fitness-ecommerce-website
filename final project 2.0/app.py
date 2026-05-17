@@ -4,6 +4,8 @@ import smtplib
 import sqlite3
 
 from flask import Flask, render_template, request, redirect, session, jsonify, url_for, flash
+import pymysql
+pymysql.install_as_MySQLdb()
 from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -28,7 +30,7 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'Keerthan05!'
 app.config['MYSQL_DB'] = 'final_project_db'
 
-mysql = MySQL(app)
+mysql = MySQL(app) # type: ignore
 
 # ================= RAZORPAY CONFIG =================
 

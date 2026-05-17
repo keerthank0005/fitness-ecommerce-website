@@ -3,3 +3,4 @@ flask-mysqldb
 razorpay
 reportlab
 pymysql
+gunicorn

@@ -1,7 +1,6 @@
 import os
 import datetime
 import smtplib
-import mysql.connector 
 
 from flask import Flask, render_template, request, redirect, session, jsonify, url_for, flash
 from flask_mysqldb import MySQL
@@ -18,19 +17,19 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.pagesizes import A4
 from reportlab.lib import colors
 
-app = Flask(__name__)
-app.secret_key = "fitai_secret_123"
-
 # ================= DATABASE CONFIG =================
 
-conn = mysql.connector.connect(
-        host=os.environ.get("MYSQLHOST"),
-        user=os.environ.get("MYSQLUSER"),
-        password=os.environ.get("MYSQLPASSWORD"),
-        database=os.environ.get("MYSQLDATABASE"),
-        port=os.environ.get("MYSQLPORT")
-        )
+app = Flask(__name__)
+app.config['MYSQL_HOST'] = os.environ.get("MYSQLHOST")
+app.config['MYSQL_USER'] = os.environ.get("MYSQLUSER")
+app.config['MYSQL_PASSWORD'] = os.environ.get("MYSQLPASSWORD")
+app.config['MYSQL_DB'] = os.environ.get("MYSQLDATABASE")
+app.config['MYSQL_PORT'] = int(os.environ.get("MYSQLPORT"))
+
 mysql = MySQL(app)
+app.secret_key = "fitai_secret_123"
+
+
 
 # ================= RAZORPAY CONFIG =================
 
